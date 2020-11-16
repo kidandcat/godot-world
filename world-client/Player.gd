@@ -14,3 +14,6 @@ var state_machine
 func _ready():
 	add_to_group("Player")
 	#state_machine = $AnimationTree.get("parameters/playback")
+
+func moveTo(pos:Vector3):
+	global_transform.origin = pos

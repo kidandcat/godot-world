@@ -30,7 +30,7 @@ func _on_data():
 	match msg[0]:
 		"newmesh":
 			var data = msg[1].split(",")
-			get_node("/root/World/Navigation/NavigationMeshInstance/GridMap").set_cell_item(int(data[1]), 0, int(data[2]), int(data[0]), 0)
+			get_node("/root/World/GridMap").set_cell_item(int(data[1]), 0, int(data[2]), int(data[0]), 0)
 
 func _process(delta):
 	_client.poll()

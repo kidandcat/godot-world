@@ -122,6 +122,21 @@ func (db *DB) newMesh(p *structs.TMesh) {
 		panic("newMesh: TMesh is NIL")
 	}
 	err := db.db.Update(func(tx *buntdb.Tx) error {
+		oldMeshes := []string{}
+		X := strconv.FormatInt(p.Position.X, 10)
+		Z := strconv.FormatInt(p.Position.Z, 10)
+		tx.Intersects("meshPos", "["+X+" "+Z+"],["+X+" "+Z+"]", func(key, val string) bool {
+			fmt.Println("mesh to delete", key, val)
+			oldMeshes = append(oldMeshes, key)
+			return true
+		})
+		for _, m := range oldMeshes {
+			_, err := tx.Delete(m)
+			if err != nil {
+				fmt.Println("error deleting", m, err)
+			}
+		}
+
 		index := nextIndex(tx)
 		tx.Set("mesh:"+index+":type", strconv.FormatInt(p.Type, 10), nil)
 		tx.Set("mesh:"+index+":pos", fmt.Sprintf("[%v %v]", p.Position.X, p.Position.Z), nil)

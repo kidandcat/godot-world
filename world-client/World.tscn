@@ -1,29 +1,21 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://assets/map.meshlib" type="MeshLibrary" id=1]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Navigation.gd" type="Script" id=3]
 
-[sub_resource type="NavigationMesh" id=1]
-agent/radius = 0.1
-
 [node name="World" type="Spatial"]
 
 [node name="Draw" type="ImmediateGeometry" parent="."]
 
-[node name="Navigation" type="Navigation" parent="."]
-script = ExtResource( 3 )
-
-[node name="NavigationMeshInstance" type="NavigationMeshInstance" parent="Navigation"]
-navmesh = SubResource( 1 )
-
-[node name="GridMap" type="GridMap" parent="Navigation/NavigationMeshInstance"]
+[node name="GridMap" type="GridMap" parent="."]
 mesh_library = ExtResource( 1 )
 cell_size = Vector3( 1, 1, 1 )
 cell_center_y = false
 data = {
 "cells": PoolIntArray(  )
 }
+script = ExtResource( 3 )
 __meta__ = {
 "_editor_clip_": 0
 }
@@ -32,7 +24,7 @@ __meta__ = {
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.517492, -1.86595 )
 
 [node name="Camera" type="Camera" parent="CameraContainer"]
-transform = Transform( 1, 0, 0, 0, 0.858504, 0.512807, 0, -0.512807, 0.858504, -0.16921, 2.73512, 3.56163 )
+transform = Transform( 0.707107, 0.612373, -0.353553, 0, 0.5, 0.866025, 0.707107, -0.612372, 0.353553, -2, 5, 2 )
 
 [node name="Ray" type="RayCast" parent="CameraContainer/Camera"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0122871, -0.740629 )
