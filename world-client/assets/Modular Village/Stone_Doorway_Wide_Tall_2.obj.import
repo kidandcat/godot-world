@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Stone_Doorway_Wide_Tall_2.obj-c4004499f572464d6202a069c97bd160.mesh"
+
+[deps]
+
+files=[ "res://.import/Stone_Doorway_Wide_Tall_2.obj-c4004499f572464d6202a069c97bd160.mesh" ]
+
+source_file="res://assets/Modular Village/Stone_Doorway_Wide_Tall_2.obj"
+dest_files=[ "res://.import/Stone_Doorway_Wide_Tall_2.obj-c4004499f572464d6202a069c97bd160.mesh", "res://.import/Stone_Doorway_Wide_Tall_2.obj-c4004499f572464d6202a069c97bd160.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

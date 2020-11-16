@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Stucco_Prop_Support_Beam_2.obj-b24534e6c8372cbe2979058d774e93cd.mesh"
+
+[deps]
+
+files=[ "res://.import/Stucco_Prop_Support_Beam_2.obj-b24534e6c8372cbe2979058d774e93cd.mesh" ]
+
+source_file="res://assets/Modular Village/Stucco_Prop_Support_Beam_2.obj"
+dest_files=[ "res://.import/Stucco_Prop_Support_Beam_2.obj-b24534e6c8372cbe2979058d774e93cd.mesh", "res://.import/Stucco_Prop_Support_Beam_2.obj-b24534e6c8372cbe2979058d774e93cd.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

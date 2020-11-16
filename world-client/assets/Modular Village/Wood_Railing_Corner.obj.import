@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Wood_Railing_Corner.obj-b42e910217f38d3197a77f5905c5b306.mesh"
+
+[deps]
+
+files=[ "res://.import/Wood_Railing_Corner.obj-b42e910217f38d3197a77f5905c5b306.mesh" ]
+
+source_file="res://assets/Modular Village/Wood_Railing_Corner.obj"
+dest_files=[ "res://.import/Wood_Railing_Corner.obj-b42e910217f38d3197a77f5905c5b306.mesh", "res://.import/Wood_Railing_Corner.obj-b42e910217f38d3197a77f5905c5b306.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

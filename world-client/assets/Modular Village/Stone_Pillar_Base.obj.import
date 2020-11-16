@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Stone_Pillar_Base.obj-11eaed1335dd6998f467aeb89e7a80bd.mesh"
+
+[deps]
+
+files=[ "res://.import/Stone_Pillar_Base.obj-11eaed1335dd6998f467aeb89e7a80bd.mesh" ]
+
+source_file="res://assets/Modular Village/Stone_Pillar_Base.obj"
+dest_files=[ "res://.import/Stone_Pillar_Base.obj-11eaed1335dd6998f467aeb89e7a80bd.mesh", "res://.import/Stone_Pillar_Base.obj-11eaed1335dd6998f467aeb89e7a80bd.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

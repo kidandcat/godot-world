@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Stone_Steps.obj-b058e59e35c6ad6ee8aeff10093c259a.mesh"
+
+[deps]
+
+files=[ "res://.import/Stone_Steps.obj-b058e59e35c6ad6ee8aeff10093c259a.mesh" ]
+
+source_file="res://assets/Modular Village/Stone_Steps.obj"
+dest_files=[ "res://.import/Stone_Steps.obj-b058e59e35c6ad6ee8aeff10093c259a.mesh", "res://.import/Stone_Steps.obj-b058e59e35c6ad6ee8aeff10093c259a.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

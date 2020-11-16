@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Cobblestone_Floor_1.obj-f8d02d11d011ffd3d6cfa8b15aeeafd8.mesh"
+
+[deps]
+
+files=[ "res://.import/Cobblestone_Floor_1.obj-f8d02d11d011ffd3d6cfa8b15aeeafd8.mesh" ]
+
+source_file="res://assets/Modular Village/Cobblestone_Floor_1.obj"
+dest_files=[ "res://.import/Cobblestone_Floor_1.obj-f8d02d11d011ffd3d6cfa8b15aeeafd8.mesh", "res://.import/Cobblestone_Floor_1.obj-f8d02d11d011ffd3d6cfa8b15aeeafd8.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true
