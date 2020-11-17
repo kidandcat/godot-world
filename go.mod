@@ -3,6 +3,7 @@ module worldserver
 go 1.15
 
 require (
+	github.com/beefsack/go-astar v0.0.0-20200827232313-4ecf9e304482
 	github.com/gin-gonic/gin v1.6.3
 	github.com/gorilla/websocket v1.4.2 // indirect
 	github.com/mailru/easyjson v0.7.6

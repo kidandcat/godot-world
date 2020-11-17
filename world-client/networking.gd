@@ -2,6 +2,8 @@ extends Node
 
 export var websocket_url = "ws://localhost:5000"
 var _client = WebSocketClient.new()
+onready var gridMap: GridMap  = get_node("/root/World/GridMap")
+onready var player  = get_node("/root/World/Player")
 
 func _ready():
 	print("Networking Ready")
@@ -27,14 +29,29 @@ func _connected(proto = ""):
 
 func _on_data():
 	var msg = _client.get_peer(1).get_packet().get_string_from_utf8().split(":")
+	print(msg)
 	match msg[0]:
+		"player":
+			var data = msg[1].split(",")
+			var pos = gridMap.map_to_world(int(data[0]), 0, int(data[1])) # x,y,z
+			player.global_transform.origin = pos # teleport player to current position
 		"newmesh":
 			var data = msg[1].split(",")
-			get_node("/root/World/GridMap").set_cell_item(int(data[1]), 0, int(data[2]), int(data[0]), 0)
+			gridMap.set_cell_item(int(data[1]), 0, int(data[2]), int(data[0]), 0)
+		"move":
+			var data = msg[1].split(",")
+			var pos = gridMap.map_to_world(int(data[0]), 0, int(data[1])) # x,y,z
+			player.moveTo(pos, int(data[0]), 0, int(data[1]))
 
 func _process(delta):
 	_client.poll()
 
 func newMesh(type:int, x:float, z:float):
-	var err = _client.get_peer(1).put_packet(("create_mesh:"+String(type)+","+String(x)+","+String(z)).to_utf8())
-	print("packet sent ", err)
+	_client.get_peer(1).put_packet(("create_mesh:"+String(type)+","+String(x)+","+String(z)).to_utf8())
+
+func sendMove(x:int, y:int, z:int):
+	player.clear_movement_buffer()
+	_client.get_peer(1).put_packet(("walk_to:"+String(x)+","+String(z)).to_utf8())
+
+func notifyMovement(x:int, y:int, z:int):
+	_client.get_peer(1).put_packet(("notify_movement:"+String(x)+","+String(z)).to_utf8())

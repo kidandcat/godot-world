@@ -6,18 +6,17 @@
 
 [node name="World" type="Spatial"]
 
-[node name="Draw" type="ImmediateGeometry" parent="."]
-
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = ExtResource( 1 )
-cell_size = Vector3( 1, 1, 1 )
+cell_size = Vector3( 1, 0.1, 1 )
 cell_center_y = false
 data = {
 "cells": PoolIntArray(  )
 }
 script = ExtResource( 3 )
 __meta__ = {
-"_editor_clip_": 0
+"_editor_clip_": 0,
+"_editor_floor_": Vector3( 0, 0, 0 )
 }
 
 [node name="CameraContainer" type="Position3D" parent="."]

@@ -37,8 +37,7 @@ func _unhandled_input(event):
 		if hit.size() != 0:
 			var target = hit.position
 			var coords = world_to_map(target)
-			var pos = map_to_world(coords.x, coords.y, coords.z)
-			player.moveTo(pos)
+			Networking.sendMove(coords.x, coords.y, coords.z)
 			
 	if event is InputEventMouseButton and event.button_index == BUTTON_RIGHT and event.pressed:
 		if hit.size() != 0:
@@ -47,5 +46,3 @@ func _unhandled_input(event):
 			set_cell_item(coords.x, 0, coords.z, selectedMeshType, 0)
 			prevType = selectedMeshType
 			Networking.newMesh(selectedMeshType, coords.x, coords.z)
-			
-
