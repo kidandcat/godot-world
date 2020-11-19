@@ -47,7 +47,6 @@ func (db *DB) getPlayerName(p *tPlayer) {
 			return err
 		}
 		p.Name = val
-		fmt.Printf("name is %s\n", val)
 		return nil
 	})
 }
@@ -80,7 +79,6 @@ func (db *DB) getPlayer(ID string) *tPlayer {
 		}
 		var X, Z int64
 		fmt.Sscanf(pos, "[%d %d]", &X, &Z)
-		fmt.Println("reading player pos", pos)
 		p.ID = ID
 		p.Name = name
 		p.Position.X = X

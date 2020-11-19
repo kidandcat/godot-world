@@ -15,7 +15,7 @@ func serverSetupRoutes() *melody.Melody {
 	m.Upgrader.CheckOrigin = func(r *http.Request) bool { return true }
 
 	m.HandleMessageBinary(func(s *melody.Session, msgb []byte) {
-		fmt.Println("- - - - >", string(msgb))
+		fmt.Println("->", string(msgb))
 		msg := strings.Split(string(msgb), ":")
 		switch msg[0] {
 		case "login": // -> login:user,pass
@@ -34,7 +34,7 @@ func serverSetupRoutes() *melody.Melody {
 	})
 
 	m.HandleConnect(func(s *melody.Session) {
-		fmt.Println("- - - new connection")
+		fmt.Println("New connection")
 	})
 	return m
 }
@@ -46,7 +46,7 @@ func serverSetupRoutes() *melody.Melody {
 Available client commands:
 - login:ok
 - player:<x>,<z>
-- newmesh:<type>,<x>,<z>
+- newmesh:<type>,<x>,<z>,<rotation>
 */
 
 func serverLogin(s *melody.Session, data string) {
@@ -59,17 +59,16 @@ func serverLogin(s *melody.Session, data string) {
 		}
 		db.newPlayer(p)
 		// send player to client
-		s.Write([]byte("login:ok"))
+		send(s, "login:ok")
 		// save player in socket
 	} else if login[1] == "get" {
 		// TODO receive player name
-		p = db.getPlayer("31")
+		p = db.getPlayer("1")
 		x := strconv.FormatInt(p.Position.X, 10)
 		z := strconv.FormatInt(p.Position.Z, 10)
 		// send player to client
-		s.Write([]byte("player:" + x + "," + z))
+		send(s, "player:"+x+","+z)
 	}
-	fmt.Printf("LOGIN: player %+v\n", p)
 	// save player in socket
 	s.Set("player", p.ID)
 }
@@ -79,20 +78,20 @@ func serverCreateMesh(m *melody.Melody, s *melody.Session, d string) {
 	t, _ := strconv.ParseInt(data[0], 10, 64)
 	x, _ := strconv.ParseInt(data[1], 10, 64)
 	z, _ := strconv.ParseInt(data[2], 10, 64)
+	y, _ := strconv.ParseInt(data[3], 10, 64)
 	mesh := &tMesh{
 		Type: t,
 		Position: tPos{
 			X: x,
 			Z: z,
 		},
-		VerticalLevel: 0,
+		VerticalLevel: y,
 		Walkable:      true,
 		WalkingCost:   1,
+		Rotation:      data[4],
 	}
 	db.newMesh(mesh)
-	m.Broadcast([]byte("newmesh:" + data[0] + "," + data[1] + "," + data[2]))
-	player, _ := s.Get("player")
-	fmt.Println("PLAYER:", player, "creating mesh", mesh) // TODO proper logging
+	broadcast(m, s, "newmesh:"+data[0]+","+data[1]+","+data[2]+","+data[3]+","+data[4])
 }
 
 func serverSendWorldAround(s *melody.Session, d string) {
@@ -101,14 +100,14 @@ func serverSendWorldAround(s *melody.Session, d string) {
 	z, _ := strconv.ParseInt(data[1], 10, 64)
 	meshes := []string{}
 	db.getNearbyMeshes(x, z, 10, &meshes, nil) // TODO calculate proper screen distance
-	fmt.Println("sendWorldAround", x, z, "=>", meshes)
 	m := &tMesh{}
 	for _, v := range meshes {
 		db.getMesh(m, v)
 		t := strconv.FormatInt(m.Type, 10)
 		x := strconv.FormatInt(m.Position.X, 10)
 		z := strconv.FormatInt(m.Position.Z, 10)
-		s.Write([]byte("newmesh:" + t + "," + x + "," + z))
+		y := strconv.FormatInt(m.VerticalLevel, 10)
+		send(s, "newmesh:"+t+","+x+","+z+","+y+","+m.Rotation)
 	}
 }
 
@@ -120,18 +119,19 @@ func serverWalkTo(s *melody.Session, d string) {
 	pID := pIDi.(string)
 
 	player := db.getPlayer(pID)
-	fmt.Println("getPlayer1", player)
 
 	origin := db.getMeshByPos(player.Position.X, player.Position.Z, 0)
 	destination := db.getMeshByPos(x, z, 0)
 
+	// do nothing if origin or destination don't exist or it's the same position
+	if origin == nil || destination == nil || (origin.Position.X == destination.Position.X && origin.Position.Z == destination.Position.Z) {
+		return
+	}
 	steps := movementCalculatePath(destination, origin)
 	steps = steps[1:] // remove first step (it is player's current position)
 	for _, step := range steps {
-		s.Write([]byte("move:" + strconv.FormatInt(step.Position.X, 10) + "," + strconv.FormatInt(step.Position.Z, 10)))
+		send(s, "move:"+strconv.FormatInt(step.Position.X, 10)+","+strconv.FormatInt(step.Position.Z, 10))
 	}
-
-	fmt.Println("STEPS", steps)
 }
 
 func serverNotifyMovement(s *melody.Session, d string) {
@@ -144,9 +144,18 @@ func serverNotifyMovement(s *melody.Session, d string) {
 	pID := pIDi.(string)
 
 	player := db.getPlayer(pID)
-	fmt.Println("getPlayer1", player)
 
 	player.Position.X = x
 	player.Position.Z = z
 	db.setPlayerPos(player)
+}
+
+func broadcast(m *melody.Melody, s *melody.Session, d string) {
+	fmt.Println("<--", d)
+	m.Broadcast([]byte(d))
+}
+
+func send(s *melody.Session, d string) {
+	fmt.Println("<-", d)
+	s.Write([]byte(d))
 }

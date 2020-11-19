@@ -1,6 +1,6 @@
 extends MeshInstance
 
-export var speed = 4
+export var speed = 0.5
 var steps = []
 var stepsCoords = []
 var moving = false
@@ -11,7 +11,7 @@ func _ready():
 func _process(delta):
 	if !moving and steps.size() > 0:
 		moving = true
-		$Tween.interpolate_property(self, "global_transform:origin", global_transform.origin, steps[0], 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		$Tween.interpolate_property(self, "global_transform:origin", global_transform.origin, steps[0], speed, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		$Tween.start()
 		Networking.notifyMovement(stepsCoords[0][0],stepsCoords[0][1],stepsCoords[0][2])
 		steps.remove(0)

@@ -18,6 +18,8 @@ __meta__ = {
 "_editor_clip_": 0,
 "_editor_floor_": Vector3( 0, 0, 0 )
 }
+meshType = 6
+verticalLevel = 2
 
 [node name="CameraContainer" type="Position3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.517492, -1.86595 )
@@ -31,6 +33,7 @@ enabled = true
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.517492, -1.86595 )
+speed = 0.2
 
 [node name="RemoteTransform" type="RemoteTransform" parent="Player"]
 remote_path = NodePath("../../CameraContainer")

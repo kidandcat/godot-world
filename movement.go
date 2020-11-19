@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"math"
 	"strconv"
 
@@ -35,9 +34,7 @@ func movementCalculatePath(a, b *tMesh) []*tMesh {
 		Bx + "-" + Bz + "-" + By: b,
 	}
 	res := []*tMesh{}
-	fmt.Println("--> movementCalculatePath", a.Position, "->", b.Position)
-	path, distance, found := astar.Path(a, b)
-	fmt.Println("<-- astar.Path:", path, "distance:", distance, "found:", found)
+	path, _, _ := astar.Path(a, b)
 	for _, m := range path {
 		res = append(res, m.(*tMesh))
 	}
@@ -47,13 +44,17 @@ func movementCalculatePath(a, b *tMesh) []*tMesh {
 func (t *tMesh) PathNeighbors() []astar.Pather {
 	res := []astar.Pather{}
 	log := []tPos{}
+	// TODO we should get meshes in all verticalLevels we consider the player height is
+	// right now, we are not having into consideration the walkable property of meshes
+	// which are not in the same verticalLevel that the player, but the player is some
+	// verticalLevels height, not just one
 	for _, m := range []*tMesh{
 		cachedGetMeshByPos(t.Position.X, t.Position.Z-1, t.VerticalLevel), // UP is z-1
 		cachedGetMeshByPos(t.Position.X+1, t.Position.Z, t.VerticalLevel), // RIGHT is x+1
 		cachedGetMeshByPos(t.Position.X, t.Position.Z+1, t.VerticalLevel), // DOWN is z+1
 		cachedGetMeshByPos(t.Position.X-1, t.Position.Z, t.VerticalLevel), // LEFT is x-1
 	} {
-		if m != nil {
+		if m != nil && m.Walkable {
 			res = append(res, m)
 			log = append(log, m.Position)
 		}

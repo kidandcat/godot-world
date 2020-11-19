@@ -29,7 +29,7 @@ func _connected(proto = ""):
 
 func _on_data():
 	var msg = _client.get_peer(1).get_packet().get_string_from_utf8().split(":")
-	print(msg)
+	print("<- ", msg)
 	match msg[0]:
 		"player":
 			var data = msg[1].split(",")
@@ -37,7 +37,10 @@ func _on_data():
 			player.global_transform.origin = pos # teleport player to current position
 		"newmesh":
 			var data = msg[1].split(",")
-			gridMap.set_cell_item(int(data[1]), 0, int(data[2]), int(data[0]), 0)
+			var rotation: int = rotation_to_int(data[4])
+			gridMap.set_cell_item(int(data[1]), int(data[3]), int(data[2]), int(data[0]), rotation)
+			if gridMap.prevPos == Vector3(int(data[1]), int(data[3]), int(data[2])):
+				gridMap.prevPos = Vector3(-9999999,-9999999,-9999999) # if you reach this, you deserve the bug bitch
 		"move":
 			var data = msg[1].split(",")
 			var pos = gridMap.map_to_world(int(data[0]), 0, int(data[1])) # x,y,z
@@ -46,12 +49,30 @@ func _on_data():
 func _process(delta):
 	_client.poll()
 
-func newMesh(type:int, x:float, z:float):
-	_client.get_peer(1).put_packet(("create_mesh:"+String(type)+","+String(x)+","+String(z)).to_utf8())
+func newMesh(type:int, x:float, z:float, rotation:String, verticalLevel:int):
+	var msg = "create_mesh:"+String(type)+","+String(x)+","+String(z)+","+String(verticalLevel)+","+rotation
+	_client.get_peer(1).put_packet(msg.to_utf8())
+	print("-> ", msg)
 
 func sendMove(x:int, y:int, z:int):
+	var msg = "walk_to:"+String(x)+","+String(z)
 	player.clear_movement_buffer()
-	_client.get_peer(1).put_packet(("walk_to:"+String(x)+","+String(z)).to_utf8())
+	_client.get_peer(1).put_packet(msg.to_utf8())
+	print("-> ", msg)
 
 func notifyMovement(x:int, y:int, z:int):
-	_client.get_peer(1).put_packet(("notify_movement:"+String(x)+","+String(z)).to_utf8())
+	var msg = "notify_movement:"+String(x)+","+String(z)
+	_client.get_peer(1).put_packet(msg.to_utf8())
+	print("-> ", msg)
+
+func rotation_to_int(rot:String) -> int:
+	match rot:
+		"down":
+			return 0
+		"left":
+			return 16
+		"up":
+			return 10
+		"right":
+			return 22
+	return 0

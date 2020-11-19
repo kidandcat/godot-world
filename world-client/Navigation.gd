@@ -4,11 +4,14 @@ onready var player  = get_node("../Player")
 onready var camera = get_node("../CameraContainer/Camera")
 onready var ray = camera.get_node("Ray")
 
-export var selectedMeshType: int = 0
+export var meshType: int = 0
+export var meshRotation: String = "down"
+export var verticalLevel: int = 0
 
 var hit
-var prevPos
-var prevType
+var prevPos: Vector3
+var prevType: int
+var prevRot: int
 
 func _ready():
 	set_process_input(true)
@@ -24,13 +27,15 @@ func _physics_process(_delta):
 	if hit.size() != 0:
 		var target = hit.position
 		var coords = world_to_map(target)
+		coords.y = verticalLevel
 		if coords == prevPos:
 			return
 		if prevPos:
-			set_cell_item(prevPos.x, 0, prevPos.z, prevType, 0)
-		prevType = get_cell_item(coords.x, 0, coords.z)
+			set_cell_item(prevPos.x, verticalLevel, prevPos.z, prevType, prevRot)
+		prevType = get_cell_item(coords.x, verticalLevel, coords.z)
+		prevRot = get_cell_item_orientation(coords.x, verticalLevel, coords.z)
 		prevPos = coords
-		set_cell_item(coords.x, 0, coords.z, selectedMeshType, 0)
+		set_cell_item(coords.x, verticalLevel, coords.z, meshType, Networking.rotation_to_int(meshRotation))
 
 func _unhandled_input(event):
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.pressed:
@@ -43,6 +48,5 @@ func _unhandled_input(event):
 		if hit.size() != 0:
 			var target = hit.position
 			var coords = world_to_map(target)
-			set_cell_item(coords.x, 0, coords.z, selectedMeshType, 0)
-			prevType = selectedMeshType
-			Networking.newMesh(selectedMeshType, coords.x, coords.z)
+			prevType = meshType
+			Networking.newMesh(meshType, coords.x, coords.z, meshRotation, verticalLevel)
