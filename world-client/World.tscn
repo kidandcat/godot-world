@@ -1,10 +1,153 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://assets/map.meshlib" type="MeshLibrary" id=1]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Navigation.gd" type="Script" id=3]
+[ext_resource path="res://UI.gd" type="Script" id=4]
 
 [node name="World" type="Spatial"]
+
+[node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource( 4 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Left" type="VBoxContainer" parent="UI/HBoxContainer"]
+margin_bottom = 600.0
+
+[node name="Center" type="VBoxContainer" parent="UI/HBoxContainer"]
+margin_left = 4.0
+margin_right = 896.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Options" type="VBoxContainer" parent="UI/HBoxContainer"]
+margin_left = 900.0
+margin_right = 1024.0
+margin_bottom = 600.0
+
+[node name="btnWalkable" type="CheckButton" parent="UI/HBoxContainer/Options"]
+margin_right = 124.0
+margin_bottom = 40.0
+text = "Collide"
+
+[node name="Label" type="Label" parent="UI/HBoxContainer/Options"]
+margin_top = 44.0
+margin_right = 124.0
+margin_bottom = 75.0
+text = "
+Rotation"
+align = 1
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Up" type="CheckBox" parent="UI/HBoxContainer/Options"]
+margin_top = 79.0
+margin_right = 124.0
+margin_bottom = 103.0
+text = "Up"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Down" type="CheckBox" parent="UI/HBoxContainer/Options"]
+margin_top = 107.0
+margin_right = 124.0
+margin_bottom = 131.0
+text = "Down"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Left" type="CheckBox" parent="UI/HBoxContainer/Options"]
+margin_top = 135.0
+margin_right = 124.0
+margin_bottom = 159.0
+text = "Left"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Right" type="CheckBox" parent="UI/HBoxContainer/Options"]
+margin_top = 163.0
+margin_right = 124.0
+margin_bottom = 187.0
+text = "Right"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VLLabel" type="Label" parent="UI/HBoxContainer/Options"]
+margin_top = 191.0
+margin_right = 124.0
+margin_bottom = 222.0
+text = "
+Vertical level"
+align = 1
+valign = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/HBoxContainer/Options"]
+margin_top = 226.0
+margin_right = 124.0
+margin_bottom = 246.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VLUp" type="Button" parent="UI/HBoxContainer/Options/HBoxContainer"]
+margin_right = 60.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+text = "^"
+
+[node name="VLDown" type="Button" parent="UI/HBoxContainer/Options/HBoxContainer"]
+margin_left = 64.0
+margin_right = 124.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+text = "v"
+
+[node name="Label3" type="Label" parent="UI/HBoxContainer/Options"]
+margin_top = 250.0
+margin_right = 124.0
+margin_bottom = 281.0
+text = "
+Model"
+align = 1
+valign = 2
+
+[node name="Model" type="LineEdit" parent="UI/HBoxContainer/Options"]
+margin_top = 285.0
+margin_right = 124.0
+margin_bottom = 309.0
+
+[node name="ViewportContainer" type="ViewportContainer" parent="UI/HBoxContainer/Options"]
+margin_top = 313.0
+margin_right = 124.0
+margin_bottom = 413.0
+rect_min_size = Vector2( 0, 100 )
+stretch = true
+
+[node name="MeshPreview" type="Viewport" parent="UI/HBoxContainer/Options/ViewportContainer"]
+size = Vector2( 124, 100 )
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 3
+gui_disable_input = true
+
+[node name="Camera" type="Camera" parent="UI/HBoxContainer/Options/ViewportContainer/MeshPreview"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.43845 )
+cull_mask = 1048574
+
+[node name="MeshPreviewPosition" type="Position3D" parent="UI/HBoxContainer/Options/ViewportContainer/MeshPreview"]
 
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = ExtResource( 1 )
@@ -18,7 +161,7 @@ __meta__ = {
 "_editor_clip_": 0,
 "_editor_floor_": Vector3( 0, 0, 0 )
 }
-meshType = 6
+meshType = 9
 verticalLevel = 2
 
 [node name="CameraContainer" type="Position3D" parent="."]
@@ -26,6 +169,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.517492, -1.86595 )
 
 [node name="Camera" type="Camera" parent="CameraContainer"]
 transform = Transform( 0.707107, 0.612373, -0.353553, 0, 0.5, 0.866025, 0.707107, -0.612372, 0.353553, -2, 5, 2 )
+cull_mask = 1048573
 
 [node name="Ray" type="RayCast" parent="CameraContainer/Camera"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0122871, -0.740629 )
@@ -39,3 +183,10 @@ speed = 0.2
 remote_path = NodePath("../../CameraContainer")
 update_rotation = false
 update_scale = false
+[connection signal="pressed" from="UI/HBoxContainer/Options/Up" to="UI" method="_on_Up_pressed"]
+[connection signal="pressed" from="UI/HBoxContainer/Options/Down" to="UI" method="_on_Down_pressed"]
+[connection signal="pressed" from="UI/HBoxContainer/Options/Left" to="UI" method="_on_Left_pressed"]
+[connection signal="pressed" from="UI/HBoxContainer/Options/Right" to="UI" method="_on_Right_pressed"]
+[connection signal="pressed" from="UI/HBoxContainer/Options/HBoxContainer/VLUp" to="UI" method="_on_VLUp_pressed"]
+[connection signal="pressed" from="UI/HBoxContainer/Options/HBoxContainer/VLDown" to="UI" method="_on_VLDown_pressed"]
+[connection signal="text_changed" from="UI/HBoxContainer/Options/Model" to="UI" method="_on_Model_text_changed"]

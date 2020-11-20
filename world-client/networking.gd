@@ -69,10 +69,10 @@ func rotation_to_int(rot:String) -> int:
 	match rot:
 		"down":
 			return 0
-		"left":
+		"right":
 			return 16
 		"up":
 			return 10
-		"right":
+		"left":
 			return 22
 	return 0

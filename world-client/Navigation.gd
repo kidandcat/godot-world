@@ -12,6 +12,7 @@ var hit
 var prevPos: Vector3
 var prevType: int
 var prevRot: int
+var prevVerticalLevel: int
 
 func _ready():
 	set_process_input(true)
@@ -31,13 +32,14 @@ func _physics_process(_delta):
 		if coords == prevPos:
 			return
 		if prevPos:
-			set_cell_item(prevPos.x, verticalLevel, prevPos.z, prevType, prevRot)
+			set_cell_item(prevPos.x, prevVerticalLevel, prevPos.z, prevType, prevRot)
 		prevType = get_cell_item(coords.x, verticalLevel, coords.z)
 		prevRot = get_cell_item_orientation(coords.x, verticalLevel, coords.z)
+		prevVerticalLevel = verticalLevel
 		prevPos = coords
 		set_cell_item(coords.x, verticalLevel, coords.z, meshType, Networking.rotation_to_int(meshRotation))
 
-func _unhandled_input(event):
+func _input(event):
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.pressed:
 		if hit.size() != 0:
 			var target = hit.position

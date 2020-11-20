@@ -28,6 +28,8 @@ func serverSetupRoutes() *melody.Melody {
 			serverWalkTo(s, msg[1])
 		case "notify_movement":
 			serverNotifyMovement(s, msg[1])
+		case "delete_mesh":
+			serverDeleteMesh(s, msg[1])
 		default:
 			fmt.Println("Unknown command", msg)
 		}
@@ -132,6 +134,14 @@ func serverWalkTo(s *melody.Session, d string) {
 	for _, step := range steps {
 		send(s, "move:"+strconv.FormatInt(step.Position.X, 10)+","+strconv.FormatInt(step.Position.Z, 10))
 	}
+}
+
+func serverDeleteMesh(s *melody.Session, d string) {
+	data := strings.Split(d, ",")
+	x, _ := strconv.ParseInt(data[0], 10, 64)
+	z, _ := strconv.ParseInt(data[1], 10, 64)
+	y, _ := strconv.ParseInt(data[2], 10, 64)
+	db.deleteMeshByPos(x, z, y)
 }
 
 func serverNotifyMovement(s *melody.Session, d string) {

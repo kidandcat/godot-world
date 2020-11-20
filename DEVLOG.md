@@ -22,6 +22,7 @@ De momento no hay mucho que enseñar (me da pereza grabar un video). Por otro la
 
 [img]https://i.imgur.com/qSFXrEa.png[/img]
 [img]https://i.imgur.com/YBtkM43.png[/img]
+[img]https://i.imgur.com/YBtkM43.png[/img]
 
 ## Roadmap
 
