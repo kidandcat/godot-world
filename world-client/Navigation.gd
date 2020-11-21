@@ -39,7 +39,7 @@ func _physics_process(_delta):
 		prevPos = coords
 		set_cell_item(coords.x, verticalLevel, coords.z, meshType, Networking.rotation_to_int(meshRotation))
 
-func _input(event):
+func _unhandled_input(event):
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.pressed:
 		if hit.size() != 0:
 			var target = hit.position

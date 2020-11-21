@@ -9631,3 +9631,1331 @@ $12
 player:1:pos
 $6
 [-3 6]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-3 7]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-2 7]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-1 7]
+*3
+$3
+set
+$12
+player:1:pos
+$5
+[0 7]
+*3
+$3
+set
+$12
+player:1:pos
+$5
+[0 6]
+*3
+$3
+set
+$12
+player:1:pos
+$5
+[0 5]
+*3
+$3
+set
+$12
+player:1:pos
+$5
+[0 4]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-1 4]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-2 4]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-3 4]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-4 4]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-5 4]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-5 5]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-5 6]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-4 6]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-3 6]
+*3
+$3
+set
+$5
+index
+$3
+123
+*3
+$3
+set
+$13
+mesh:123:type
+$1
+5
+*3
+$3
+set
+$12
+mesh:123:pos
+$6
+[-8 5]
+*3
+$3
+set
+$22
+mesh:123:verticalLevel
+$1
+2
+*3
+$3
+set
+$17
+mesh:123:walkable
+$4
+true
+*3
+$3
+set
+$20
+mesh:123:walkingCost
+$1
+1
+*3
+$3
+set
+$17
+mesh:123:rotation
+$4
+down
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-4 6]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-5 6]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-5 5]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-5 4]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-4 4]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-3 4]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-2 4]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-3 4]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-4 4]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-5 4]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-5 5]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-5 4]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-4 4]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-3 4]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-4 4]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-5 4]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-5 5]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-5 6]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-5 5]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-5 4]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-4 4]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-3 4]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-4 4]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-5 4]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-5 5]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-5 6]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-5 5]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-5 4]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-4 4]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-3 4]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-4 4]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-5 4]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-5 5]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-5 6]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-5 5]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-5 4]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-4 4]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-3 4]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-4 4]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-5 4]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-5 5]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-5 6]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-5 5]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-5 4]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-4 4]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-3 4]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-2 4]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-3 4]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-2 4]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-1 4]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-2 4]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-3 4]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-3 3]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-4 3]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-4 4]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-5 4]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-5 5]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-5 6]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-4 6]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-3 6]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-3 7]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-2 7]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-1 7]
+*3
+$3
+set
+$12
+player:1:pos
+$5
+[0 7]
+*3
+$3
+set
+$12
+player:1:pos
+$5
+[0 6]
+*3
+$3
+set
+$12
+player:1:pos
+$5
+[0 5]
+*3
+$3
+set
+$12
+player:1:pos
+$5
+[0 4]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-1 4]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-1 3]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-1 2]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-1 1]
+*3
+$3
+set
+$12
+player:1:pos
+$5
+[0 1]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-1 1]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-1 2]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-2 2]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-2 3]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-2 4]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-1 4]
+*3
+$3
+set
+$12
+player:1:pos
+$5
+[0 4]
+*3
+$3
+set
+$12
+player:1:pos
+$5
+[0 5]
+*3
+$3
+set
+$12
+player:1:pos
+$5
+[0 6]
+*3
+$3
+set
+$12
+player:1:pos
+$5
+[0 7]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-1 7]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-2 7]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-3 7]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-3 6]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-4 6]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-5 6]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-5 5]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-5 4]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-4 4]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-3 4]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-2 4]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-1 4]
+*3
+$3
+set
+$12
+player:1:pos
+$5
+[0 4]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-1 4]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-2 4]
+*3
+$3
+set
+$5
+index
+$3
+124
+*3
+$3
+set
+$13
+mesh:124:type
+$1
+0
+*3
+$3
+set
+$12
+mesh:124:pos
+$5
+[0 2]
+*3
+$3
+set
+$22
+mesh:124:verticalLevel
+$1
+0
+*3
+$3
+set
+$17
+mesh:124:walkable
+$4
+true
+*3
+$3
+set
+$20
+mesh:124:walkingCost
+$1
+1
+*3
+$3
+set
+$17
+mesh:124:rotation
+$4
+down
+*3
+$3
+set
+$13
+mesh:125:type
+$1
+0
+*3
+$3
+set
+$12
+mesh:125:pos
+$6
+[-2 1]
+*3
+$3
+set
+$22
+mesh:125:verticalLevel
+$1
+0
+*3
+$3
+set
+$17
+mesh:125:walkable
+$4
+true
+*3
+$3
+set
+$20
+mesh:125:walkingCost
+$1
+1
+*3
+$3
+set
+$17
+mesh:125:rotation
+$4
+down
+*3
+$3
+set
+$5
+index
+$3
+125
+*3
+$3
+set
+$5
+index
+$3
+126
+*3
+$3
+set
+$13
+mesh:126:type
+$1
+0
+*3
+$3
+set
+$12
+mesh:126:pos
+$6
+[-2 0]
+*3
+$3
+set
+$22
+mesh:126:verticalLevel
+$1
+0
+*3
+$3
+set
+$17
+mesh:126:walkable
+$4
+true
+*3
+$3
+set
+$20
+mesh:126:walkingCost
+$1
+1
+*3
+$3
+set
+$17
+mesh:126:rotation
+$4
+down
+*3
+$3
+set
+$13
+mesh:127:type
+$1
+0
+*3
+$3
+set
+$12
+mesh:127:pos
+$6
+[-4 2]
+*3
+$3
+set
+$22
+mesh:127:verticalLevel
+$1
+0
+*3
+$3
+set
+$17
+mesh:127:walkable
+$4
+true
+*3
+$3
+set
+$20
+mesh:127:walkingCost
+$1
+1
+*3
+$3
+set
+$17
+mesh:127:rotation
+$4
+down
+*2
+$3
+del
+$12
+mesh:108:pos
+*3
+$3
+set
+$5
+index
+$3
+127
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-3 4]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-4 4]
+*3
+$3
+set
+$5
+index
+$3
+128
+*3
+$3
+set
+$13
+mesh:128:type
+$1
+0
+*3
+$3
+set
+$12
+mesh:128:pos
+$6
+[-5 3]
+*3
+$3
+set
+$22
+mesh:128:verticalLevel
+$1
+0
+*3
+$3
+set
+$17
+mesh:128:walkable
+$4
+true
+*3
+$3
+set
+$20
+mesh:128:walkingCost
+$1
+1
+*3
+$3
+set
+$17
+mesh:128:rotation
+$4
+down
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-5 4]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-5 5]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-5 6]
+*3
+$3
+set
+$13
+mesh:129:type
+$1
+0
+*3
+$3
+set
+$12
+mesh:129:pos
+$6
+[-6 6]
+*3
+$3
+set
+$22
+mesh:129:verticalLevel
+$1
+0
+*3
+$3
+set
+$17
+mesh:129:walkable
+$4
+true
+*3
+$3
+set
+$20
+mesh:129:walkingCost
+$1
+1
+*3
+$3
+set
+$17
+mesh:129:rotation
+$4
+down
+*3
+$3
+set
+$5
+index
+$3
+129
+*3
+$3
+set
+$20
+mesh:130:walkingCost
+$1
+1
+*3
+$3
+set
+$17
+mesh:130:rotation
+$4
+down
+*3
+$3
+set
+$5
+index
+$3
+130
+*3
+$3
+set
+$13
+mesh:130:type
+$1
+0
+*3
+$3
+set
+$12
+mesh:130:pos
+$6
+[-6 5]
+*3
+$3
+set
+$22
+mesh:130:verticalLevel
+$1
+0
+*3
+$3
+set
+$17
+mesh:130:walkable
+$4
+true
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-4 6]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-3 6]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-3 7]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-2 7]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-1 7]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-2 7]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-3 7]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-2 7]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-1 7]
+*3
+$3
+set
+$12
+player:1:pos
+$5
+[0 7]
+*3
+$3
+set
+$12
+player:1:pos
+$5
+[0 6]
+*3
+$3
+set
+$12
+player:1:pos
+$5
+[0 5]
+*3
+$3
+set
+$12
+player:1:pos
+$5
+[0 4]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-1 4]
+*3
+$3
+set
+$12
+player:1:pos
+$6
+[-2 4]
