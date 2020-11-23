@@ -8,6 +8,14 @@
 
 [node name="World" type="Spatial"]
 
+[node name="LightBake" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="Blink" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
 [node name="UI" type="HBoxContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -22,7 +30,7 @@ margin_bottom = 600.0
 
 [node name="Center" type="VBoxContainer" parent="UI"]
 margin_left = 4.0
-margin_right = 896.0
+margin_right = 862.0
 margin_bottom = 600.0
 mouse_filter = 2
 size_flags_horizontal = 3
@@ -31,7 +39,7 @@ alignment = 2
 
 [node name="Panel" type="Panel" parent="UI/Center"]
 margin_top = 500.0
-margin_right = 892.0
+margin_right = 858.0
 margin_bottom = 600.0
 rect_min_size = Vector2( 0, 100 )
 
@@ -51,97 +59,182 @@ __meta__ = {
 }
 
 [node name="Options" type="VBoxContainer" parent="UI"]
-margin_left = 900.0
+margin_left = 866.0
 margin_right = 1024.0
 margin_bottom = 600.0
 
 [node name="btnWalkable" type="CheckButton" parent="UI/Options"]
-margin_right = 124.0
+margin_right = 158.0
 margin_bottom = 40.0
 text = "Collide"
 
-[node name="Label" type="Label" parent="UI/Options"]
+[node name="Label2" type="Label" parent="UI/Options"]
 margin_top = 44.0
-margin_right = 124.0
-margin_bottom = 75.0
+margin_right = 158.0
+margin_bottom = 92.0
 text = "
-Rotation"
+Rotation
+"
 align = 1
 valign = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Up" type="CheckBox" parent="UI/Options"]
-margin_top = 79.0
-margin_right = 124.0
-margin_bottom = 103.0
-text = "Up"
+[node name="HBoxContainer2" type="HBoxContainer" parent="UI/Options"]
+margin_top = 96.0
+margin_right = 158.0
+margin_bottom = 146.0
+alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Down" type="CheckBox" parent="UI/Options"]
-margin_top = 107.0
-margin_right = 124.0
-margin_bottom = 131.0
-text = "Down"
+[node name="RotationLeft" type="Button" parent="UI/Options/HBoxContainer2"]
+margin_left = 10.0
+margin_right = 60.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
+text = "<"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Left" type="CheckBox" parent="UI/Options"]
-margin_top = 135.0
-margin_right = 124.0
-margin_bottom = 159.0
-text = "Left"
+[node name="VSeparator" type="VSeparator" parent="UI/Options/HBoxContainer2"]
+margin_left = 64.0
+margin_right = 94.0
+margin_bottom = 50.0
+custom_constants/separation = 30
+
+[node name="RotationRight" type="Button" parent="UI/Options/HBoxContainer2"]
+margin_left = 98.0
+margin_right = 148.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
+text = ">"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Right" type="CheckBox" parent="UI/Options"]
-margin_top = 163.0
-margin_right = 124.0
-margin_bottom = 187.0
-text = "Right"
+[node name="Label" type="Label" parent="UI/Options"]
+margin_top = 150.0
+margin_right = 158.0
+margin_bottom = 198.0
+text = "
+Position
+"
+align = 1
+valign = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Options"]
+margin_top = 202.0
+margin_right = 158.0
+margin_bottom = 360.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Options/VBoxContainer"]
+margin_right = 158.0
+margin_bottom = 50.0
+alignment = 1
+
+[node name="Up" type="Button" parent="UI/Options/VBoxContainer/HBoxContainer"]
+margin_left = 54.0
+margin_right = 104.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
+text = "^"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="UI/Options/VBoxContainer"]
+margin_top = 54.0
+margin_right = 158.0
+margin_bottom = 104.0
+alignment = 1
+
+[node name="Left" type="Button" parent="UI/Options/VBoxContainer/HBoxContainer2"]
+margin_right = 50.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
+text = "<"
+
+[node name="VSeparator" type="VSeparator" parent="UI/Options/VBoxContainer/HBoxContainer2"]
+margin_left = 54.0
+margin_right = 104.0
+margin_bottom = 50.0
+custom_constants/separation = 50
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Right" type="Button" parent="UI/Options/VBoxContainer/HBoxContainer2"]
+margin_left = 108.0
+margin_right = 158.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
+text = ">"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="UI/Options/VBoxContainer"]
+margin_top = 108.0
+margin_right = 158.0
+margin_bottom = 158.0
+alignment = 1
+
+[node name="Down" type="Button" parent="UI/Options/VBoxContainer/HBoxContainer3"]
+margin_left = 54.0
+margin_right = 104.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
+text = "v"
 
 [node name="VLLabel" type="Label" parent="UI/Options"]
-margin_top = 191.0
-margin_right = 124.0
-margin_bottom = 222.0
+margin_top = 364.0
+margin_right = 158.0
+margin_bottom = 429.0
 text = "
-Vertical level"
+
+Vertical level
+"
 align = 1
 valign = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/Options"]
-margin_top = 226.0
-margin_right = 124.0
-margin_bottom = 246.0
+margin_top = 433.0
+margin_right = 158.0
+margin_bottom = 483.0
+alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="VLUp" type="Button" parent="UI/Options/HBoxContainer"]
+margin_left = 10.0
 margin_right = 60.0
-margin_bottom = 20.0
-size_flags_horizontal = 3
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
 text = "^"
 
-[node name="VLDown" type="Button" parent="UI/Options/HBoxContainer"]
+[node name="VSeparator" type="VSeparator" parent="UI/Options/HBoxContainer"]
 margin_left = 64.0
-margin_right = 124.0
-margin_bottom = 20.0
-size_flags_horizontal = 3
+margin_right = 94.0
+margin_bottom = 50.0
+custom_constants/separation = 30
+
+[node name="VLDown" type="Button" parent="UI/Options/HBoxContainer"]
+margin_left = 98.0
+margin_right = 148.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
 text = "v"
 
 [node name="Previewer" parent="UI/Options" instance=ExtResource( 5 )]
-margin_top = 250.0
-margin_right = 124.0
-margin_bottom = 340.0
+margin_top = 487.0
+margin_right = 158.0
+margin_bottom = 577.0
 
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = ExtResource( 1 )
@@ -155,7 +248,6 @@ __meta__ = {
 "_editor_clip_": 0,
 "_editor_floor_": Vector3( 0, 0, 0 )
 }
-meshType = 9
 verticalLevel = 2
 
 [node name="CameraContainer" type="Position3D" parent="."]
@@ -177,9 +269,25 @@ speed = 0.2
 remote_path = NodePath("../../CameraContainer")
 update_rotation = false
 update_scale = false
-[connection signal="pressed" from="UI/Options/Up" to="UI" method="_on_Up_pressed"]
-[connection signal="pressed" from="UI/Options/Down" to="UI" method="_on_Down_pressed"]
-[connection signal="pressed" from="UI/Options/Left" to="UI" method="_on_Left_pressed"]
-[connection signal="pressed" from="UI/Options/Right" to="UI" method="_on_Right_pressed"]
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 0.918963, -0.126281, -0.373576, 0.394343, 0.294282, 0.87057, 0, -0.947339, 0.320233, 0, 7.25017, 0 )
+shadow_enabled = true
+shadow_contact = 1.0
+directional_shadow_mode = 1
+
+[node name="GIProbe" type="GIProbe" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.39741, 0 )
+visible = false
+subdiv = 0
+extents = Vector3( 10, 4.66213, 10 )
+[connection signal="timeout" from="LightBake" to="GridMap" method="_on_LightBake_timeout"]
+[connection signal="timeout" from="Blink" to="GridMap" method="_on_Blink_timeout"]
+[connection signal="pressed" from="UI/Options/HBoxContainer2/RotationLeft" to="UI" method="_on_RotationLeft_pressed"]
+[connection signal="pressed" from="UI/Options/HBoxContainer2/RotationRight" to="UI" method="_on_RotationRight_pressed"]
+[connection signal="pressed" from="UI/Options/VBoxContainer/HBoxContainer/Up" to="UI" method="_on_Up_pressed"]
+[connection signal="pressed" from="UI/Options/VBoxContainer/HBoxContainer2/Left" to="UI" method="_on_Left_pressed"]
+[connection signal="pressed" from="UI/Options/VBoxContainer/HBoxContainer2/Right" to="UI" method="_on_Right_pressed"]
+[connection signal="pressed" from="UI/Options/VBoxContainer/HBoxContainer3/Down" to="UI" method="_on_Down_pressed"]
 [connection signal="pressed" from="UI/Options/HBoxContainer/VLUp" to="UI" method="_on_VLUp_pressed"]
 [connection signal="pressed" from="UI/Options/HBoxContainer/VLDown" to="UI" method="_on_VLDown_pressed"]

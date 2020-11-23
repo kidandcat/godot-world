@@ -1,6 +1,6 @@
 extends Node
 
-export var websocket_url = "ws://localhost:5000"
+export var websocket_url = "ws://192.168.1.10:5000"
 var _client = WebSocketClient.new()
 onready var gridMap: GridMap  = get_node("/root/World/GridMap")
 onready var player  = get_node("/root/World/Player")
@@ -38,9 +38,10 @@ func _on_data():
 		"newmesh":
 			var data = msg[1].split(",")
 			var rotation: int = rotation_to_int(data[4])
-			gridMap.set_cell_item(int(data[1]), int(data[3]), int(data[2]), int(data[0]), rotation)
-			if gridMap.prevPos == Vector3(int(data[1]), int(data[3]), int(data[2])):
-				gridMap.prevPos = Vector3(-9999999,-9999999,-9999999) # if you reach this, you deserve the bug bitch
+			gridMap.createMesh(int(data[1]), int(data[3]), int(data[2]), int(data[0]), rotation)
+			if gridMap.selectedPos == Vector3(int(data[1]), int(data[3]), int(data[2])):
+				# stop editing if the new mesh created is the one we are editing
+				gridMap.selectedType = -1 # unselect editing mesh
 		"move":
 			var data = msg[1].split(",")
 			var pos = gridMap.map_to_world(int(data[0]), 0, int(data[1])) # x,y,z
@@ -67,12 +68,16 @@ func notifyMovement(x:int, y:int, z:int):
 
 func rotation_to_int(rot:String) -> int:
 	match rot:
-		"down":
-			return 0
-		"right":
-			return 16
-		"up":
-			return 10
-		"left":
-			return 22
+		"down": return 0
+		"right": return 16
+		"up": return 10
+		"left": return 22
 	return 0
+
+func rotation_to_string(rot:int) -> String:
+	match rot:
+		0: return "down"
+		16: return "right"
+		10: return "up"
+		22: return "left"
+	return "down"
