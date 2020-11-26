@@ -13,11 +13,13 @@ var shouldBakeLight = true
 var hit
 var blinkOff = true
 var selectedPos: Vector3
-var selectedType: int
+var selectedType: int = -1
 var selectedRot: int
+var shouldClearLastMesh = false
 
 func _ready():
 	set_process_input(true)
+	UI.editMode(false)
 
 func _unhandled_input(event):
 	if event is InputEventMouseButton and event.pressed:
@@ -31,6 +33,7 @@ func _unhandled_input(event):
 		if hit.size() != 0:
 			var target = hit.position
 			var coords = world_to_map(target)
+			print("event", event, event.button_index)
 		
 			if event.button_index == BUTTON_LEFT:
 				if hit.size() != 0:
@@ -38,32 +41,77 @@ func _unhandled_input(event):
 					
 			if event.button_index == BUTTON_RIGHT:
 				if hit.size() != 0:
+					UI.editMode(true)
 					var t: int
 					for i in range(coords.y, coords.y - heightLevelThreshold, -1):
 						t = get_cell_item(coords.x, i, coords.z)
-						print("get_cell_item in ", coords.x, ",", i, ",", coords.z, ": ", t)
 						if t > -1:
 							coords = Vector3(coords.x, i, coords.z)
 							break
 					if t > -1:
-						clear_blink(true)
+						clear_blink()
 						selectedPos = coords
 						selectedType = get_cell_item(coords.x, coords.y, coords.z)
 						selectedRot = get_cell_item_orientation(coords.x, coords.y, coords.z)
 						UI.on_mesh_selected()
-func clear_blink(show: bool):
+
+func updateSelectedValues():
+	selectedType = get_cell_item(selectedPos.x, selectedPos.y, selectedPos.z)
+	selectedRot = get_cell_item_orientation(selectedPos.x, selectedPos.y, selectedPos.z)
+	if selectedType < 0:
+		selectedType = 0
+		shouldClearLastMesh = true
+	else:
+		shouldClearLastMesh = false
+
+func stopEditing():
+	UI.editMode(false)
+	clear_blink()
+	selectedType = -1
+
+func startEditing():
+	UI.editMode(true)
+	var coords = world_to_map(player.global_transform.origin)
+	var t: int
+	for i in range(coords.y, coords.y - heightLevelThreshold, -1):
+		t = get_cell_item(coords.x, i, coords.z)
+		if t > -1:
+			coords = Vector3(coords.x, i, coords.z)
+			break
+	if t > -1:
+		clear_blink()
+		selectedPos = coords
+		selectedType = get_cell_item(coords.x, coords.y, coords.z)
+		selectedRot = get_cell_item_orientation(coords.x, coords.y, coords.z)
+		UI.on_mesh_selected()
+	if selectedType == -1:
+		selectedType = 0
+
+func clear_blink():
 	var t = -1
-	if show:
+	if !shouldClearLastMesh:
 		t = selectedType
+		blinkOff = false
+	else:
+		blinkOff = true
 	if selectedType > -1:
 		set_cell_item(selectedPos.x, selectedPos.y, selectedPos.z, t, selectedRot)
 
 func saveMeshSelected():
+	print("newMesh", selectedType, selectedPos.x, selectedPos.z, Networking.rotation_to_string(selectedRot), selectedPos.y)
 	Networking.newMesh(selectedType, selectedPos.x, selectedPos.z, Networking.rotation_to_string(selectedRot), selectedPos.y)
-	selectedType = -1 # negative value means no mesh selected
+	stopEditing()
+	
+func deleteMeshSelected():
+	Networking.deleteMesh(selectedPos.x, selectedPos.z, selectedPos.y)
+	stopEditing()
 
 func createMesh(x: int, y: int, z: int, mesh: int, rotation: int):
 	set_cell_item(x, y, z, mesh, rotation)
+	shouldBakeLight = true
+	
+func deleteMesh(x: int, y: int, z: int):
+	set_cell_item(x, y, z, -1)
 	shouldBakeLight = true
 
 func _on_LightBake_timeout():

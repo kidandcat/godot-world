@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://assets/map.meshlib" type="MeshLibrary" id=1]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Navigation.gd" type="Script" id=3]
 [ext_resource path="res://UI.gd" type="Script" id=4]
-[ext_resource path="res://Previewer.tscn" type="PackedScene" id=5]
 
 [node name="World" type="Spatial"]
 
@@ -13,7 +12,7 @@ wait_time = 2.0
 autostart = true
 
 [node name="Blink" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.3
 autostart = true
 
 [node name="UI" type="HBoxContainer" parent="."]
@@ -26,11 +25,17 @@ __meta__ = {
 }
 
 [node name="Left" type="VBoxContainer" parent="UI"]
+margin_right = 104.0
 margin_bottom = 600.0
 
+[node name="EditSwitch" type="CheckButton" parent="UI/Left"]
+margin_right = 104.0
+margin_bottom = 40.0
+text = "Edit"
+
 [node name="Center" type="VBoxContainer" parent="UI"]
-margin_left = 4.0
-margin_right = 862.0
+margin_left = 108.0
+margin_right = 822.0
 margin_bottom = 600.0
 mouse_filter = 2
 size_flags_horizontal = 3
@@ -39,9 +44,10 @@ alignment = 2
 
 [node name="Panel" type="Panel" parent="UI/Center"]
 margin_top = 500.0
-margin_right = 858.0
+margin_right = 714.0
 margin_bottom = 600.0
 rect_min_size = Vector2( 0, 100 )
+size_flags_horizontal = 3
 
 [node name="ScrollContainer" type="ScrollContainer" parent="UI/Center/Panel"]
 anchor_right = 1.0
@@ -59,22 +65,20 @@ __meta__ = {
 }
 
 [node name="Options" type="VBoxContainer" parent="UI"]
-margin_left = 866.0
+margin_left = 826.0
 margin_right = 1024.0
 margin_bottom = 600.0
 
 [node name="btnWalkable" type="CheckButton" parent="UI/Options"]
-margin_right = 158.0
+margin_right = 198.0
 margin_bottom = 40.0
 text = "Collide"
 
 [node name="Label2" type="Label" parent="UI/Options"]
 margin_top = 44.0
-margin_right = 158.0
-margin_bottom = 92.0
-text = "
-Rotation
-"
+margin_right = 198.0
+margin_bottom = 58.0
+text = "Rotation"
 align = 1
 valign = 2
 __meta__ = {
@@ -82,9 +86,9 @@ __meta__ = {
 }
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="UI/Options"]
-margin_top = 96.0
-margin_right = 158.0
-margin_bottom = 146.0
+margin_top = 62.0
+margin_right = 198.0
+margin_bottom = 112.0
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -92,37 +96,36 @@ __meta__ = {
 
 [node name="RotationLeft" type="Button" parent="UI/Options/HBoxContainer2"]
 margin_left = 10.0
-margin_right = 60.0
+margin_right = 80.0
 margin_bottom = 50.0
-rect_min_size = Vector2( 50, 50 )
+rect_min_size = Vector2( 70, 50 )
 text = "<"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="VSeparator" type="VSeparator" parent="UI/Options/HBoxContainer2"]
-margin_left = 64.0
-margin_right = 94.0
+margin_left = 84.0
+margin_right = 114.0
 margin_bottom = 50.0
 custom_constants/separation = 30
 
 [node name="RotationRight" type="Button" parent="UI/Options/HBoxContainer2"]
-margin_left = 98.0
-margin_right = 148.0
+margin_left = 118.0
+margin_right = 188.0
 margin_bottom = 50.0
-rect_min_size = Vector2( 50, 50 )
+rect_min_size = Vector2( 70, 50 )
 text = ">"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="UI/Options"]
-margin_top = 150.0
-margin_right = 158.0
-margin_bottom = 198.0
+margin_top = 116.0
+margin_right = 198.0
+margin_bottom = 147.0
 text = "
-Position
-"
+Position"
 align = 1
 valign = 2
 __meta__ = {
@@ -130,82 +133,80 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/Options"]
-margin_top = 202.0
-margin_right = 158.0
-margin_bottom = 360.0
+margin_top = 151.0
+margin_right = 198.0
+margin_bottom = 369.0
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/Options/VBoxContainer"]
-margin_right = 158.0
-margin_bottom = 50.0
+margin_right = 198.0
+margin_bottom = 70.0
 alignment = 1
 
 [node name="Up" type="Button" parent="UI/Options/VBoxContainer/HBoxContainer"]
-margin_left = 54.0
-margin_right = 104.0
-margin_bottom = 50.0
-rect_min_size = Vector2( 50, 50 )
+margin_left = 64.0
+margin_right = 134.0
+margin_bottom = 70.0
+rect_min_size = Vector2( 70, 70 )
 text = "^"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="UI/Options/VBoxContainer"]
-margin_top = 54.0
-margin_right = 158.0
-margin_bottom = 104.0
+margin_top = 74.0
+margin_right = 198.0
+margin_bottom = 144.0
 alignment = 1
 
 [node name="Left" type="Button" parent="UI/Options/VBoxContainer/HBoxContainer2"]
-margin_right = 50.0
-margin_bottom = 50.0
-rect_min_size = Vector2( 50, 50 )
+margin_right = 70.0
+margin_bottom = 70.0
+rect_min_size = Vector2( 70, 70 )
 text = "<"
 
 [node name="VSeparator" type="VSeparator" parent="UI/Options/VBoxContainer/HBoxContainer2"]
-margin_left = 54.0
-margin_right = 104.0
-margin_bottom = 50.0
+margin_left = 74.0
+margin_right = 124.0
+margin_bottom = 70.0
 custom_constants/separation = 50
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Right" type="Button" parent="UI/Options/VBoxContainer/HBoxContainer2"]
-margin_left = 108.0
-margin_right = 158.0
-margin_bottom = 50.0
-rect_min_size = Vector2( 50, 50 )
+margin_left = 128.0
+margin_right = 198.0
+margin_bottom = 70.0
+rect_min_size = Vector2( 70, 70 )
 text = ">"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="UI/Options/VBoxContainer"]
-margin_top = 108.0
-margin_right = 158.0
-margin_bottom = 158.0
+margin_top = 148.0
+margin_right = 198.0
+margin_bottom = 218.0
 alignment = 1
 
 [node name="Down" type="Button" parent="UI/Options/VBoxContainer/HBoxContainer3"]
-margin_left = 54.0
-margin_right = 104.0
-margin_bottom = 50.0
-rect_min_size = Vector2( 50, 50 )
+margin_left = 64.0
+margin_right = 134.0
+margin_bottom = 70.0
+rect_min_size = Vector2( 70, 70 )
 text = "v"
 
 [node name="VLLabel" type="Label" parent="UI/Options"]
-margin_top = 364.0
-margin_right = 158.0
-margin_bottom = 429.0
+margin_top = 373.0
+margin_right = 198.0
+margin_bottom = 404.0
 text = "
-
-Vertical level
-"
+Vertical level"
 align = 1
 valign = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/Options"]
-margin_top = 433.0
-margin_right = 158.0
-margin_bottom = 483.0
+margin_top = 408.0
+margin_right = 198.0
+margin_bottom = 458.0
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -213,28 +214,60 @@ __meta__ = {
 
 [node name="VLUp" type="Button" parent="UI/Options/HBoxContainer"]
 margin_left = 10.0
-margin_right = 60.0
+margin_right = 80.0
 margin_bottom = 50.0
-rect_min_size = Vector2( 50, 50 )
+rect_min_size = Vector2( 70, 50 )
 text = "^"
 
 [node name="VSeparator" type="VSeparator" parent="UI/Options/HBoxContainer"]
-margin_left = 64.0
-margin_right = 94.0
+margin_left = 84.0
+margin_right = 114.0
 margin_bottom = 50.0
 custom_constants/separation = 30
 
 [node name="VLDown" type="Button" parent="UI/Options/HBoxContainer"]
-margin_left = 98.0
-margin_right = 148.0
+margin_left = 118.0
+margin_right = 188.0
 margin_bottom = 50.0
-rect_min_size = Vector2( 50, 50 )
+rect_min_size = Vector2( 70, 50 )
 text = "v"
 
-[node name="Previewer" parent="UI/Options" instance=ExtResource( 5 )]
-margin_top = 487.0
-margin_right = 158.0
-margin_bottom = 577.0
+[node name="Label3" type="Label" parent="UI/Options"]
+margin_top = 462.0
+margin_right = 198.0
+margin_bottom = 493.0
+text = "
+Actions"
+align = 1
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="UI/Options"]
+margin_top = 497.0
+margin_right = 198.0
+margin_bottom = 547.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SaveMesh" type="Button" parent="UI/Options/HBoxContainer3"]
+margin_left = 10.0
+margin_right = 80.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 70, 50 )
+text = "Save"
+
+[node name="VSeparator" type="VSeparator" parent="UI/Options/HBoxContainer3"]
+margin_left = 84.0
+margin_right = 114.0
+margin_bottom = 50.0
+custom_constants/separation = 30
+
+[node name="DeleteMesh" type="Button" parent="UI/Options/HBoxContainer3"]
+margin_left = 118.0
+margin_right = 188.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 70, 50 )
+text = "Delete"
 
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = ExtResource( 1 )
@@ -272,17 +305,16 @@ update_scale = false
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 0.918963, -0.126281, -0.373576, 0.394343, 0.294282, 0.87057, 0, -0.947339, 0.320233, 0, 7.25017, 0 )
-shadow_enabled = true
 shadow_contact = 1.0
 directional_shadow_mode = 1
 
 [node name="GIProbe" type="GIProbe" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.39741, 0 )
-visible = false
 subdiv = 0
 extents = Vector3( 10, 4.66213, 10 )
 [connection signal="timeout" from="LightBake" to="GridMap" method="_on_LightBake_timeout"]
 [connection signal="timeout" from="Blink" to="GridMap" method="_on_Blink_timeout"]
+[connection signal="toggled" from="UI/Left/EditSwitch" to="UI" method="_on_EditSwitch_toggled"]
 [connection signal="pressed" from="UI/Options/HBoxContainer2/RotationLeft" to="UI" method="_on_RotationLeft_pressed"]
 [connection signal="pressed" from="UI/Options/HBoxContainer2/RotationRight" to="UI" method="_on_RotationRight_pressed"]
 [connection signal="pressed" from="UI/Options/VBoxContainer/HBoxContainer/Up" to="UI" method="_on_Up_pressed"]
@@ -291,3 +323,5 @@ extents = Vector3( 10, 4.66213, 10 )
 [connection signal="pressed" from="UI/Options/VBoxContainer/HBoxContainer3/Down" to="UI" method="_on_Down_pressed"]
 [connection signal="pressed" from="UI/Options/HBoxContainer/VLUp" to="UI" method="_on_VLUp_pressed"]
 [connection signal="pressed" from="UI/Options/HBoxContainer/VLDown" to="UI" method="_on_VLDown_pressed"]
+[connection signal="pressed" from="UI/Options/HBoxContainer3/SaveMesh" to="UI" method="_on_SaveMesh_pressed"]
+[connection signal="pressed" from="UI/Options/HBoxContainer3/DeleteMesh" to="UI" method="_on_DeleteMesh_pressed"]

@@ -87,7 +87,8 @@ func (db *DB) getMesh(p *tMesh, ID string) {
 }
 
 func (db *DB) deleteMesh(ID string) {
-	db.db.View(func(tx *buntdb.Tx) error {
+	fmt.Println("DELETING", ID)
+	err := db.db.Update(func(tx *buntdb.Tx) error {
 		tx.Delete("mesh:" + ID + ":rotation")
 		tx.Delete("mesh:" + ID + ":type")
 		tx.Delete("mesh:" + ID + ":pos")
@@ -96,6 +97,8 @@ func (db *DB) deleteMesh(ID string) {
 		tx.Delete("mesh:" + ID + ":walkingCost")
 		return nil
 	})
+	utilsCheck(err)
+	fmt.Println("DELETED")
 }
 
 func (db *DB) deleteMeshByPos(x, z, y int64) {
@@ -106,14 +109,17 @@ func (db *DB) deleteMeshByPos(x, z, y int64) {
 	db.db.View(func(tx *buntdb.Tx) error {
 		return tx.Intersects("meshPos", "["+_x+" "+_z+"],["+_x+" "+_z+"]", func(key, val string) bool {
 			kID := strings.Split(key, ":")[1]
-			meshesKeys = append(meshesKeys, kID)
 			db.getMesh(meshAux, kID)
 			if meshAux.VerticalLevel == y {
-				db.deleteMesh(kID)
+				fmt.Printf("DELETE mesh found! %v %+v", kID, meshAux)
+				meshesKeys = append(meshesKeys, kID)
 			}
 			return true
 		})
 	})
+	for _, m := range meshesKeys {
+		db.deleteMesh(m)
+	}
 }
 
 func (db *DB) getNearbyMeshes(x, z, dist int64, meshesKeys *[]string, meshesValues *[]string) {

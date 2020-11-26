@@ -1,6 +1,6 @@
 extends Node
 
-export var websocket_url = "ws://192.168.1.10:5000"
+export var websocket_url = "wss://131d454e7693.ngrok.io"
 var _client = WebSocketClient.new()
 onready var gridMap: GridMap  = get_node("/root/World/GridMap")
 onready var player  = get_node("/root/World/Player")
@@ -42,6 +42,9 @@ func _on_data():
 			if gridMap.selectedPos == Vector3(int(data[1]), int(data[3]), int(data[2])):
 				# stop editing if the new mesh created is the one we are editing
 				gridMap.selectedType = -1 # unselect editing mesh
+		"deletemesh":
+			var data = msg[1].split(",")
+			gridMap.deleteMesh(int(data[0]), int(data[2]), int(data[1]))
 		"move":
 			var data = msg[1].split(",")
 			var pos = gridMap.map_to_world(int(data[0]), 0, int(data[1])) # x,y,z
@@ -52,6 +55,11 @@ func _process(delta):
 
 func newMesh(type:int, x:float, z:float, rotation:String, verticalLevel:int):
 	var msg = "create_mesh:"+String(type)+","+String(x)+","+String(z)+","+String(verticalLevel)+","+rotation
+	_client.get_peer(1).put_packet(msg.to_utf8())
+	print("-> ", msg)
+
+func deleteMesh(x:float, z:float, verticalLevel:int):
+	var msg = "delete_mesh:"+String(x)+","+String(z)+","+String(verticalLevel)
 	_client.get_peer(1).put_packet(msg.to_utf8())
 	print("-> ", msg)
 
