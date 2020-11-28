@@ -305,11 +305,13 @@ update_scale = false
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 0.918963, -0.126281, -0.373576, 0.394343, 0.294282, 0.87057, 0, -0.947339, 0.320233, 0, 7.25017, 0 )
+shadow_enabled = true
 shadow_contact = 1.0
 directional_shadow_mode = 1
 
 [node name="GIProbe" type="GIProbe" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.39741, 0 )
+visible = false
 subdiv = 0
 extents = Vector3( 10, 4.66213, 10 )
 [connection signal="timeout" from="LightBake" to="GridMap" method="_on_LightBake_timeout"]

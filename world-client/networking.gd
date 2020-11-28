@@ -1,6 +1,6 @@
 extends Node
 
-export var websocket_url = "wss://131d454e7693.ngrok.io"
+export var websocket_url = "wss://world.galax.be"
 var _client = WebSocketClient.new()
 onready var gridMap: GridMap  = get_node("/root/World/GridMap")
 onready var player  = get_node("/root/World/Player")
