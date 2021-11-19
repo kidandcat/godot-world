@@ -27,6 +27,7 @@ __meta__ = {
 [node name="Left" type="VBoxContainer" parent="UI"]
 margin_right = 104.0
 margin_bottom = 600.0
+mouse_filter = 2
 
 [node name="EditSwitch" type="CheckButton" parent="UI/Left"]
 margin_right = 104.0
@@ -314,6 +315,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.39741, 0 )
 visible = false
 subdiv = 0
 extents = Vector3( 10, 4.66213, 10 )
+
 [connection signal="timeout" from="LightBake" to="GridMap" method="_on_LightBake_timeout"]
 [connection signal="timeout" from="Blink" to="GridMap" method="_on_Blink_timeout"]
 [connection signal="toggled" from="UI/Left/EditSwitch" to="UI" method="_on_EditSwitch_toggled"]

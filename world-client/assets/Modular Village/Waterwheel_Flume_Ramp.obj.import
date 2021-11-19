@@ -16,4 +16,5 @@ dest_files=[ "res://.import/Waterwheel_Flume_Ramp.obj-a7e53a91f894b4e988a8f1bad1
 generate_tangents=true
 scale_mesh=Vector3( 1, 1, 1 )
 offset_mesh=Vector3( 0, 0, 0 )
-optimize_mesh=true
+octahedral_compression=true
+optimize_mesh_flags=4286

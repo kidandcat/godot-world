@@ -16,4 +16,5 @@ dest_files=[ "res://.import/Wood_Post_Large.obj-5ab45b6b806304687b48f9cf41c4e7bf
 generate_tangents=true
 scale_mesh=Vector3( 1, 1, 1 )
 offset_mesh=Vector3( 0, 0, 0 )
-optimize_mesh=true
+octahedral_compression=true
+optimize_mesh_flags=4286

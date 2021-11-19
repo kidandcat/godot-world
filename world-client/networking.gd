@@ -1,6 +1,6 @@
 extends Node
 
-export var websocket_url = "wss://world.galax.be"
+export var websocket_url = "ws://localhost:5000"
 var _client = WebSocketClient.new()
 onready var gridMap: GridMap  = get_node("/root/World/GridMap")
 onready var player  = get_node("/root/World/Player")
@@ -25,7 +25,6 @@ func _connected(proto = ""):
 	print("Connected with protocol: ", proto)
 	var err = _client.get_peer(1).put_packet("login:jairo,get".to_utf8())
 	print("packet sent ", err)
-	_client.get_peer(1).put_packet("world_around:0,0".to_utf8())
 
 func _on_data():
 	var msg = _client.get_peer(1).get_packet().get_string_from_utf8().split(":")

@@ -16,4 +16,5 @@ dest_files=[ "res://.import/Kit_Window_Upper_Convex.obj-31d29de40b8f4fcac13c657e
 generate_tangents=true
 scale_mesh=Vector3( 1, 1, 1 )
 offset_mesh=Vector3( 0, 0, 0 )
-optimize_mesh=true
+octahedral_compression=true
+optimize_mesh_flags=4286

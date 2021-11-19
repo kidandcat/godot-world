@@ -23,7 +23,7 @@ func serverSetupRoutes() *melody.Melody {
 		case "create_mesh":
 			serverCreateMesh(m, s, msg[1])
 		case "world_around":
-			serverSendWorldAround(s, msg[1])
+			serverSendWorldAround(s)
 		case "walk_to":
 			serverWalkTo(s, msg[1])
 		case "notify_movement":
@@ -60,18 +60,19 @@ func serverLogin(s *melody.Session, data string) {
 			Position: tPos{X: 0, Z: 0},
 		}
 		db.newPlayer(p)
-		// send player to client
+		s.Set("posx", 0)
+		s.Set("posz", 0)
 		send(s, "login:ok")
-		// save player in socket
+		serverSendWorldAround(s)
 	} else if login[1] == "get" {
-		// TODO receive player name
 		p = db.getPlayer("1")
 		x := strconv.FormatInt(p.Position.X, 10)
 		z := strconv.FormatInt(p.Position.Z, 10)
-		// send player to client
+		s.Set("posx", p.Position.X)
+		s.Set("posz", p.Position.Z)
 		send(s, "player:"+x+","+z)
+		serverSendWorldAround(s)
 	}
-	// save player in socket
 	s.Set("player", p.ID)
 }
 
@@ -96,12 +97,22 @@ func serverCreateMesh(m *melody.Melody, s *melody.Session, d string) {
 	broadcast(m, s, "newmesh:"+data[0]+","+data[1]+","+data[2]+","+data[3]+","+data[4])
 }
 
-func serverSendWorldAround(s *melody.Session, d string) {
-	data := strings.Split(d, ",")
-	x, _ := strconv.ParseInt(data[0], 10, 64)
-	z, _ := strconv.ParseInt(data[1], 10, 64)
+func serverSendWorldAround(s *melody.Session) {
+	var x, z int64
+	ix, ok := s.Get("posx")
+	if !ok {
+		x = int64(0)
+	} else {
+		x = ix.(int64)
+	}
+	iz, ok := s.Get("posz")
+	if !ok {
+		z = int64(0)
+	} else {
+		z = iz.(int64)
+	}
 	meshes := []string{}
-	db.getNearbyMeshes(x, z, 10, &meshes, nil) // TODO calculate proper screen distance
+	db.getNearbyMeshes(x, z, 5, &meshes, nil) // TODO calculate proper screen distance
 	m := &tMesh{}
 	for _, v := range meshes {
 		db.getMesh(m, v)
@@ -134,6 +145,9 @@ func serverWalkTo(s *melody.Session, d string) {
 	for _, step := range steps {
 		send(s, "move:"+strconv.FormatInt(step.Position.X, 10)+","+strconv.FormatInt(step.Position.Z, 10))
 	}
+	s.Set("posx", x)
+	s.Set("posz", z)
+	serverSendWorldAround(s)
 }
 
 func serverDeleteMesh(m *melody.Melody, s *melody.Session, d string) {
@@ -158,6 +172,7 @@ func serverNotifyMovement(s *melody.Session, d string) {
 
 	player.Position.X = x
 	player.Position.Z = z
+
 	db.setPlayerPos(player)
 }
 
